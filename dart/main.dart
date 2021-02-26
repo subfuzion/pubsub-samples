@@ -3,15 +3,22 @@ import 'package:googleapis/pubsub/v1.dart';
 import 'package:googleapis_auth/auth_io.dart';
 
 void main() async {
-  final accountCredentials = ServiceAccountCredentials.fromJson(r'''
-  {
-    "type": "service_account",
-    "private_key_id": "",
-    "private_key": "",
-    "client_email": "",
-    "client_id": ""
-  }
-  ''');
+  // final accountCredentials = ServiceAccountCredentials.fromJson(r'''
+  // {
+  //   "type": "service_account",
+  //   "private_key_id": "",
+  //   "private_key": "",
+  //   "client_email": "",
+  //   "client_id": ""
+  // }
+  // ''');
+  final accountCredentials = ServiceAccountCredentials.fromJson({
+    'type': 'service_account',
+    'private_key_id': '',
+    'private_key': '',
+    'client_email': '',
+    'client_id': '',
+  });
   const scopes = [
     PubsubApi.cloudPlatformScope,
   ];
