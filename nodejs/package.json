@@ -1,0 +1,13 @@
+{
+  "name": "nodejs-pubsub-demo",
+  "version": "0.0.1",
+  "license": "Apache-2.0",
+  "author": "Google Inc.",
+  "engines": {
+    "node": ">=10"
+  },
+  "dependencies": {
+    "@google-cloud/pubsub": "^2.10.0",
+    "google-auth-library": "^7.0.0"
+  }
+}
