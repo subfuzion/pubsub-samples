@@ -16,8 +16,8 @@ void main() async {
     PubsubApi.cloudPlatformScope,
   ];
 
-  //final client = await clientViaApplicationDefaultCredentials();
-  final client = await clientViaApplicationDefaultCredentials(scopes: scopes);
+  final client = await clientViaServiceAccount(accountCredentials, scopes);
+  //final client = await clientViaApplicationDefaultCredentials(scopes: scopes);
   //final client = await clientViaApplicationDefaultCredentials();
   final pubsub = PubsubApi(client);
 
