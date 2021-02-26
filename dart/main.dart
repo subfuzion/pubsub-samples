@@ -12,20 +12,20 @@ void main() async {
   //   "client_id": ""
   // }
   // ''');
-  final accountCredentials = ServiceAccountCredentials.fromJson({
-    'type': 'service_account',
-    'private_key_id': '',
-    'private_key': '',
-    'client_email': '',
-    'client_id': '',
-  });
+  // final accountCredentials = ServiceAccountCredentials.fromJson({
+  //   'type': 'service_account',
+  //   'private_key_id': '',
+  //   'private_key': '',
+  //   'client_email': '',
+  //   'client_id': '',
+  // });
   const scopes = [
     PubsubApi.cloudPlatformScope,
   ];
 
-  final client = await clientViaServiceAccount(accountCredentials, scopes);
+  //final client = await clientViaServiceAccount(accountCredentials, scopes);
   //final client = await clientViaApplicationDefaultCredentials(scopes: scopes);
-  //final client = await clientViaApplicationDefaultCredentials();
+  final client = await clientViaApplicationDefaultCredentials(scopes: scopes);
   final pubsub = PubsubApi(client);
 
   print('--> get topics list');
