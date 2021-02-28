@@ -1,0 +1,13 @@
+name: dart_pubsub_demo
+description: Dart sample for accessing pubsub
+version: 0.0.1
+publish_to: none
+
+environment:
+  sdk: ">=2.10.0 <3.0.0"
+
+dependencies:
+  googleapis: ^1.0.0
+  googleapis_auth: ^0.2.12
+  http: ^0.12.0
+
