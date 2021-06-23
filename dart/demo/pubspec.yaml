@@ -8,8 +8,6 @@ environment:
 
 dependencies:
   googleapis: ^1.0.0
-  googleapis_auth: ^1.0.0
-  http: ^0.13.0
-  io: ^1.0.0
-  path: ^1.7.0
-  shelf: ^1.0.0
+  googleapis_auth: ^0.2.12
+  http: ^0.12.0
+

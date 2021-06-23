@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:googleapis/pubsub/v1.dart';
 import 'package:googleapis_auth/auth_io.dart';
+import 'package:http/http.dart';
 
 void main() async {
   const scopes = [
@@ -8,12 +9,12 @@ void main() async {
     PubsubApi.pubsubScope,
   ];
 
-  final client = await clientViaApplicationDefaultCredentials(scopes: scopes);
+  final client = await clientViaApplicationDefaultCredentials(scopes: scopes, baseClient: Client());
 
   // basically, calling close() doesn't make any difference
-  print('closing...');
   final stopwatch = Stopwatch()..start();
+  print('closing...');
   client.close();
-  print('elapsed: ${stopwatch.elapsed}');
   print('closed');
+  print('elapsed: ${stopwatch.elapsed}');
 }
