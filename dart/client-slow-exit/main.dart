@@ -9,12 +9,13 @@ void main() async {
     PubsubApi.pubsubScope,
   ];
 
-  final client = await clientViaApplicationDefaultCredentials(scopes: scopes, baseClient: Client());
+  final client = await clientViaApplicationDefaultCredentials(scopes: scopes);
 
   // basically, calling close() doesn't make any difference
   final stopwatch = Stopwatch()..start();
-  print('closing...');
+  print('closing client...');
   client.close();
-  print('closed');
+  print('client should be closed');
   print('elapsed: ${stopwatch.elapsed}');
+  print('Done, should exit now...');
 }

@@ -58,4 +58,68 @@ cd dart/client-slow-exit
 dart pub install
 time dart main.dart
 ```
+
+Output:
+```text
+$ time dart main.dart
+closing client...
+client should be closed
+elapsed: 0:00:00.001319
+Done, should exit now...
+
+real    0m17.080s
+user    0m1.281s
+sys     0m0.217s
+
+```
+
 This demonstrates an issue with releasing the client in a timely way.
+
+#### 6.1)
+
+Modify `~/.pub-cache/hosted/pub.dartlang.org/googleapis_auth-1.0. 0/lib/src/auth_http_utils.dart`
+
+Line 93: change `bool closeUnderlyingClient = false` to `true`.
+
+```dart
+/// Will close the underlying `http.Client` depending on a constructor argument.
+class AutoRefreshingClient extends AutoRefreshDelegatingClient {
+  final ClientId clientId;
+  final String? quotaProject;
+  @override
+  AccessCredentials credentials;
+  late Client authClient;
+
+  AutoRefreshingClient(
+    Client client,
+    this.clientId,
+    this.credentials, {
+    bool closeUnderlyingClient = true,
+    this.quotaProject,
+  })  : assert(credentials.accessToken.type == 'Bearer'),
+        assert(credentials.refreshToken != null),
+        super(client, closeUnderlyingClient: closeUnderlyingClient) {
+    authClient = AuthenticatedClient(
+      baseClient,
+      credentials,
+      quotaProject: quotaProject,
+    );
+  }
+```
+Time the app now, app exits immediately.
+
+```text
+time dart main.dart
+```
+
+Output:
+```text
+closing client...
+client should be closed
+elapsed: 0:00:00.006440
+Done, should exit now...
+
+real    0m1.120s
+user    0m1.243s
+sys     0m0.215s
+```
